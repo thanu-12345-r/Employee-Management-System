@@ -6,15 +6,17 @@ app.secret_key = "secret"
 
 # ---------------- DATABASE CONNECTION ----------------
 
+import os
+
 def get_db():
     return pymysql.connect(
-        host="localhost",
-        user="root",
-        password="mysql",     # XAMPP default password is empty
-        database="company",
+        host=os.getenv("MYSQLHOST"),
+        user=os.getenv("MYSQLUSER"),
+        password=os.getenv("MYSQLPASSWORD"),
+        database=os.getenv("MYSQLDATABASE"),
+        port=int(os.getenv("MYSQLPORT")),
         cursorclass=pymysql.cursors.Cursor
     )
-
 # ---------------- HOME PAGE ----------------
 
 @app.route('/')
