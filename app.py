@@ -14,7 +14,7 @@ def get_db():
         user=os.getenv("MYSQLUSER"),
         password=os.getenv("MYSQLPASSWORD"),
         database=os.getenv("MYSQLDATABASE"),
-        port=int(os.getenv("MYSQLPORT")),
+        port=int(os.getenv("MYSQLPORT",3306)),
         cursorclass=pymysql.cursors.Cursor
     )
 # ---------------- HOME PAGE ----------------
@@ -315,6 +315,6 @@ def logout():
 import os
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)), debug=True)
 
     
