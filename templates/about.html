@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - EMS</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+            padding: 0;
+        }
+        nav {
+            background: #4f46e5;
+            padding: 16px 32px;
+            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+        nav li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
+        nav li a:hover {
+            opacity: 0.8;
+        }
+        .logout-btn {
+            margin-left: 0;
+            margin-right: auto;
+            background: #ef4444;
+            padding: 10px 16px;
+            border-radius: 8px;
+        }
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 32px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
+        }
+        h1 {
+            margin-top: 0;
+            color: #1f2d3d;
+            font-size: 32px;
+            text-align: center;
+        }
+        h2 {
+            color: #4f46e5;
+            margin-top: 32px;
+            border-bottom: 2px solid #4f46e5;
+            padding-bottom: 12px;
+        }
+        p {
+            color: #6b7280;
+            line-height: 1.8;
+            font-size: 16px;
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+        .feature-card {
+            padding: 20px;
+            background: #f9fafb;
+            border-radius: 10px;
+            border-left: 4px solid #4f46e5;
+        }
+        .feature-card h3 {
+            margin-top: 0;
+            color: #4f46e5;
+        }
+        .feature-card p {
+            margin: 0;
+            font-size: 14px;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 12px 24px;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: background 0.2s ease;
+        }
+        .back-btn:hover {
+            background: #4338ca;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <div class="brand">
+        <span>EMS</span>
+        <span>Employee Management System</span>
+    </div>
+
+    <ul>
+        <li class="dropdown">
+            <a href="/dashboard">Dashboard ▼</a>
+            <ul class="dropdown-menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
+            </ul>
+        </li>
+
+        <li><a href="/add">Add Employee</a></li>
+        <li><a href="/view">View Employee</a></li>
+        <li class="logout-btn"><a href="/logout">Logout</a></li>
+    </ul>
+</nav>
+
+    <div class="container">
+        <h1>About Employee Management System</h1>
+
+        <p>Welcome to the Employee Management System (EMS), a comprehensive and user-friendly platform designed to streamline employee data management and organizational efficiency.</p>
+
+        <h2>About EMS</h2>
+        <p>
+            The Employee Management System is a modern web application built with Flask that helps organizations manage their employee records effectively. 
+            Whether you're managing a small team or a large workforce, EMS provides all the tools you need to keep employee data organized and easily accessible.
+        </p>
+
+        <h2>Key Features</h2>
+        <div class="features">
+            <div class="feature-card">
+                <h3>👤 Employee Management</h3>
+                <p>Add, view, edit, and delete employee records with ease.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>🔐 Secure Authentication</h3>
+                <p>User registration and login system with role-based access control.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📊 Employee Records</h3>
+                <p>Store and manage comprehensive employee information including salary and contact details.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>📱 Responsive Design</h3>
+                <p>Access from any device with our mobile-friendly interface.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>⚡ Fast & Efficient</h3>
+                <p>Quick search and retrieval of employee data.</p>
+            </div>
+
+            <div class="feature-card">
+                <h3>💼 Department Management</h3>
+                <p>Organize employees by departments for better organization.</p>
+            </div>
+        </div>
+
+        <h2>System Overview</h2>
+        <p>
+            EMS is designed with simplicity and functionality in mind. The system allows you to:
+        </p>
+        <ul style="color: #6b7280; line-height: 2;">
+            <li>Register new user accounts with specific roles (Admin, User)</li>
+            <li>Securely log in to access employee management features</li>
+            <li>Add new employees to the system with detailed information</li>
+            <li>View all employees in a structured table format</li>
+            <li>Edit employee information when needed</li>
+            <li>Delete employee records safely</li>
+            <li>Navigate through multiple departments</li>
+            <li>Access the system from anywhere, anytime</li>
+        </ul>
+
+        <h2>Contact & Support</h2>
+        <p>
+            For more information, feedback, or support, please visit our <a href="/contact" style="color: #4f46e5; text-decoration: none;">Contact Page</a>.
+            We're here to help you get the most out of the Employee Management System.
+        </p>
+
+        <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
+    </div>
+</body>
+</html>
