@@ -1,0 +1,12 @@
+.cache/
+.local/
+.virtualenvs/
+__pycache__/
+*.pyc
+.sqlite_history
+.bashrc
+.gitconfig
+.profile
+.pythonstartup.py
+employee.db
+employees.db
