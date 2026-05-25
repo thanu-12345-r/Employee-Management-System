@@ -10,11 +10,11 @@ import os
 
 def get_db():
     return pymysql.connect(
-        host=os.getenv("MYSQLHOST"),
-        user=os.getenv("MYSQLUSER"),
-        password=os.getenv("MYSQLPASSWORD"),
-        database=os.getenv("MYSQLDATABASE"),
-        port=int(os.getenv("MYSQLPORT",3306)),
+        host="localhost",
+        user="root",
+        password="mysql",   # leave empty for now
+        database="employee_management",
+        port=3306,
         cursorclass=pymysql.cursors.Cursor
     )
 # ---------------- HOME PAGE ----------------
