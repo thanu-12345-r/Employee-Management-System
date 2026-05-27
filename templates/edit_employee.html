@@ -6,56 +6,11 @@
     <title>Edit Employee - EMS</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background: #4f46e5;
-            padding: 16px 32px;
-            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        nav li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s ease;
-        }
-        nav li a:hover {
-            opacity: 0.8;
-        }
-        .logout-btn {
-            margin-left: 0;
-            margin-right: auto;
-            background: #ef4444;
-            padding: 10px 16px;
-            border-radius: 8px;
-        }
-        .logout-btn:hover {
-            background: #dc2626;
-        }
         .container {
             max-width: 700px;
-            margin: 40px auto;
-            padding: 32px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
         }
         h1 {
-            margin-top: 0;
-            color: #1f2d3d;
-            font-size: 32px;
+            margin-bottom: 24px;
         }
         .form-group {
             margin-bottom: 24px;
@@ -63,57 +18,60 @@
         label {
             display: block;
             margin-bottom: 8px;
-            color: #4b5563;
+            color: var(--text-medium);
             font-weight: 600;
         }
         input,
         textarea {
             width: 100%;
             padding: 12px 14px;
-            border: 1px solid #d1d5db;
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             font-size: 15px;
-            color: #1f2d3d;
+            color: var(--text-dark);
             background: #f8fafc;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: inherit;
         }
         input:focus,
         textarea:focus {
             outline: none;
-            border-color: #4f46e5;
+            border-color: var(--primary-color);
             box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.12);
         }
-        .readonly {
-            background: #e5e7eb;
-            color: #6b7280;
+        input:read-only {
+            background: var(--border-light);
+            color: var(--text-light);
             cursor: not-allowed;
         }
         .button-group {
             display: flex;
             gap: 16px;
             margin-top: 32px;
+            flex-wrap: wrap;
         }
         button,
-        .btn {
+        .cancel-btn {
             flex: 1;
+            min-width: 150px;
             padding: 14px;
             border: none;
             border-radius: 10px;
             font-size: 16px;
             cursor: pointer;
             transition: background 0.2s ease;
+            font-weight: 500;
         }
         .submit-btn {
-            background: #4f46e5;
+            background: var(--primary-color);
             color: white;
         }
         .submit-btn:hover {
-            background: #4338ca;
+            background: var(--primary-dark);
         }
         .cancel-btn {
-            background: #e5e7eb;
-            color: #1f2d3d;
+            background: var(--border-light);
+            color: var(--text-dark);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -121,28 +79,43 @@
         }
         .cancel-btn:hover {
             background: #d1d5db;
+            text-decoration: none;
         }
         .info-box {
             padding: 16px;
-            background: #f0f4ff;
-            border-left: 4px solid #4f46e5;
+            background: var(--primary-light);
+            border-left: 4px solid var(--primary-color);
             border-radius: 8px;
             margin-bottom: 24px;
-            color: #4b5563;
+            color: var(--text-medium);
         }
     </style>
 </head>
 <body>
     <nav>
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/view">View Employees</a></li>
-            <li><a href="/add">Add Employee</a></li>
-            <li class="logout-btn"><a href="/logout">Logout</a></li>
-        </ul>
+        <div class="nav-container">
+            <a href="/dashboard" class="brand">
+                <div class="logo-icon">EMS</div>
+                <div class="logo-text">
+                    <span>Employee Management</span>
+                    <span>System</span>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul id="navMenu">
+                <li class="dropdown" id="dashboardDropdown">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('dashboardDropdown').classList.toggle('active');">Dashboard ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="/add">Add Employee</a></li>
+                <li><a href="/view">View Employee</a></li>
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
+            </ul>
+        </div>
     </nav>
 
     <div class="container">
@@ -165,7 +138,7 @@
         <form action="/update" method="post">
             <div class="form-group">
                 <label for="eid">Employee ID</label>
-                <input type="text" id="eid" name="eid" value="{{ emp[0] }}" readonly class="readonly">
+                <input type="text" id="eid" name="eid" value="{{ emp[0] }}" readonly>
             </div>
 
             <div class="form-group">
@@ -194,5 +167,36 @@
             </div>
         </form>
     </div>
+
+    <footer>
+        <div class="footer-section">
+            <p><strong>Copyright © 2026 - All Rights Reserved</strong></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (!this.href.includes('#')) {
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.getElementById('navMenu').classList.remove('active');
+                document.getElementById('dashboardDropdown').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>

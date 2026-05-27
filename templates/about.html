@@ -6,66 +6,20 @@
     <title>About - EMS</title>
     <link rel="stylesheet" href="/static/style.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background: #4f46e5;
-            padding: 16px 32px;
-            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            gap: 32px;
-            align-items: center;
-        }
-        nav li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: opacity 0.2s ease;
-        }
-        nav li a:hover {
-            opacity: 0.8;
-        }
-        .logout-btn {
-            margin-left: 0;
-            margin-right: auto;
-            background: #ef4444;
-            padding: 10px 16px;
-            border-radius: 8px;
-        }
-        .logout-btn:hover {
-            background: #dc2626;
-        }
         .container {
             max-width: 900px;
-            margin: 40px auto;
-            padding: 32px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(31, 45, 61, 0.08);
         }
         h1 {
-            margin-top: 0;
-            color: #1f2d3d;
-            font-size: 32px;
             text-align: center;
+            margin-bottom: 24px;
         }
         h2 {
-            color: #4f46e5;
+            color: var(--primary-color);
             margin-top: 32px;
-            border-bottom: 2px solid #4f46e5;
+            border-bottom: 2px solid var(--primary-color);
             padding-bottom: 12px;
         }
         p {
-            color: #6b7280;
             line-height: 1.8;
             font-size: 16px;
         }
@@ -79,53 +33,66 @@
             padding: 20px;
             background: #f9fafb;
             border-radius: 10px;
-            border-left: 4px solid #4f46e5;
+            border-left: 4px solid var(--primary-color);
         }
         .feature-card h3 {
             margin-top: 0;
-            color: #4f46e5;
+            color: var(--primary-color);
+            font-size: 16px;
         }
         .feature-card p {
             margin: 0;
             font-size: 14px;
+            color: var(--text-light);
         }
         .back-btn {
             display: inline-block;
             margin-top: 32px;
             padding: 12px 24px;
-            background: #4f46e5;
+            background: var(--primary-color);
             color: white;
             text-decoration: none;
             border-radius: 8px;
             transition: background 0.2s ease;
         }
         .back-btn:hover {
-            background: #4338ca;
+            background: var(--primary-dark);
+        }
+        ul {
+            color: var(--text-light);
+            line-height: 2;
+        }
+        ul li {
+            margin: 8px 0;
         }
     </style>
 </head>
 <body>
     <nav>
-    <div class="brand">
-        <span>EMS</span>
-        <span>Employee Management System</span>
-    </div>
-
-    <ul>
-        <li class="dropdown">
-            <a href="/dashboard">Dashboard ▼</a>
-            <ul class="dropdown-menu">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/contact">Contact</a></li>
+        <div class="nav-container">
+            <a href="/dashboard" class="brand">
+                <div class="logo-icon">EMS</div>
+                <div class="logo-text">
+                    <span>Employee Management</span>
+                    <span>System</span>
+                </div>
+            </a>
+            <button class="menu-toggle" id="menuToggle">☰</button>
+            <ul id="navMenu">
+                <li class="dropdown" id="dashboardDropdown">
+                    <a href="#" onclick="event.preventDefault(); document.getElementById('dashboardDropdown').classList.toggle('active');">Dashboard ▼</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </li>
+                <li><a href="/add">Add Employee</a></li>
+                <li><a href="/view">View Employee</a></li>
+                <li class="logout-btn"><a href="/logout">Logout</a></li>
             </ul>
-        </li>
-
-        <li><a href="/add">Add Employee</a></li>
-        <li><a href="/view">View Employee</a></li>
-        <li class="logout-btn"><a href="/logout">Logout</a></li>
-    </ul>
-</nav>
+        </div>
+    </nav>
 
     <div class="container">
         <h1>About Employee Management System</h1>
@@ -175,7 +142,7 @@
         <p>
             EMS is designed with simplicity and functionality in mind. The system allows you to:
         </p>
-        <ul style="color: #6b7280; line-height: 2;">
+        <ul>
             <li>Register new user accounts with specific roles (Admin, User)</li>
             <li>Securely log in to access employee management features</li>
             <li>Add new employees to the system with detailed information</li>
@@ -188,11 +155,42 @@
 
         <h2>Contact & Support</h2>
         <p>
-            For more information, feedback, or support, please visit our <a href="/contact" style="color: #4f46e5; text-decoration: none;">Contact Page</a>.
+            For more information, feedback, or support, please visit our <a href="/contact">Contact Page</a>.
             We're here to help you get the most out of the Employee Management System.
         </p>
 
         <a href="/dashboard" class="back-btn">← Back to Dashboard</a>
     </div>
+
+    <footer>
+        <div class="footer-section">
+            <p><strong>Copyright © 2026 - All Rights Reserved</strong></p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            document.getElementById('navMenu').classList.toggle('active');
+        });
+
+        // Close menu when link is clicked
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                if (!this.href.includes('#')) {
+                    document.getElementById('navMenu').classList.remove('active');
+                }
+            });
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', function(event) {
+            const nav = document.querySelector('nav');
+            if (!nav.contains(event.target)) {
+                document.getElementById('navMenu').classList.remove('active');
+                document.getElementById('dashboardDropdown').classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
